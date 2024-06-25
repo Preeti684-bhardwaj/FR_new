@@ -930,68 +930,99 @@ function snapfucn()
 }
 
 </script>
-
 <script type="text/javascript">
 
-	function initCountdown(times) {
-  let time = [0, times, 0]; // [hours, minutes, seconds]
-      let interval = null;
+	function initCountdown(times) 
+{
 
-      const outputElement = document.getElementById('demo');
-      const toggleButton = document.getElementById('toggle');
-
-      function start() {
-        pause();
-        interval = setInterval(count, 1000);
-      }
-
-      function pause() {
-        clearInterval(interval);
-        interval = null;
-      }
-
-      function count() {
-        time[2]--; // Decrement seconds
-        if (time[2] === -1) {
-          time[1]--; // Decrement minutes
+	function event_click( event )
+{	   
+    
+	    if( interval === null )
+	    {
+	      
+	      start();
+	      event.target.className = 'rash';
+	     
+	    } else 
+	    
+	    {
+	      
+	      pause();
+	      event.target.className = 'zzz';
+	      
+	    }
+	    
+}
+	  
+	  function start()
+{
+	    pause();
+	    interval = setInterval( count, 1000 );
+	    
+}
+	  function pause() 
+{
+	  
+	    clearInterval( interval );
+	    interval = null;
+	    
+}
+	  
+	  
+function count() {
+        if (time[2] > 0) {
+          time[2]--;
+        } else if (time[1] > 0) {
+          time[1]--;
           time[2] = 59;
-        }
-        if (time[1] === -1) {
-          time[0]--; // Decrement hours
+        } else if (time[0] > 0) {
+          time[0]--;
           time[1] = 59;
-        }
-
-        const [hours, minutes, seconds] = time;
-
-        if (hours === 0 && minutes === 0 && seconds === 0) {
+          time[2] = 59;
+        } else {
+          // Time's up
           pause();
           alert("Your Time Is Up..");
           window.location.href = "examsummary.html";
+          return;
         }
+	 
+	    
+	    const [ hours, minutes, seconds ] = time;
 
-        // Update the display
-        outputElement.innerHTML = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
-      }
-
-      function pad(number) {
-        return number < 10 ? '0' + number : number;
-      }
-
-      function eventClick(event) {
-        if (interval === null) {
-          start();
-          event.target.className = 'rash';
-        } else {
-          pause();
-          event.target.className = 'zzz';
-        }
-      }
-
-      toggleButton.addEventListener('click', eventClick);
-    }
-
-   initCountdown();
-  </script>
+	    if( seconds == 0 && minutes == 0 && hours == 0 )
+	    {
+	        alert("Your Time Is Up..");
+	    	  window.location.href="examsummary.html";
+	    }
+	    
+	    
+	    if (seconds < 10) 
+	    {
+	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
+	    }
+	    else 
+	    {
+	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
+	    } 
+}
+	  
+	  
+	  var outputElement = document.getElementById('demo');
+	  var toggleElement = document.getElementById('toggle');
+	  var interval = null;
+	  	  	  
+	  var time = [0,times,1];
+	
+	  toggleElement.addEventListener( 'click', event_click );
+	  toggleElement.click();	  
+	
+}	
+initCountdown();
+	
+</script>
+ 
  
 <script type="text/javascript">
 
