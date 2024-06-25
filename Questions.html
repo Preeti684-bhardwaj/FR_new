@@ -969,46 +969,47 @@ function snapfucn()
 	    interval = null;
 	    
 }
-	  
-	  
-	  function count()
-{
-  time[2]--; // Decrement seconds
+  
+// var outputElement = document.getElementById("timerDisplay"); // Assuming there's an element with id 'timerDisplay'
+function count() {
+    time[2]--; // Decrement seconds
 
-if (time[2] == -1) {
-    time[1]--; // Decrement minutes
-    time[2] = 59; // Reset seconds to 59
+    if (time[2] == -1) {
+        time[1]--; // Decrement minutes
+        time[2] = 59; // Reset seconds to 59
+    }
+
+    if (time[1] == -1) {
+        time[0]--; // Decrement hours
+        time[1] = 59; // Reset minutes to 59
+    }
+
+    if (time[0] == -1) {
+        time[0] = 0; // Ensure hours do not go below 0
+        time[1] = 0; // Ensure minutes do not go below 0
+        time[2] = 0; // Ensure seconds do not go below 0
+    }
+
+    var [hours, minutes, seconds] = time;
+
+    if (seconds == 0 && minutes == 0 && hours == 0) {
+        alert("Your Time Is Up..");
+        window.location.href = "examsummary.html";
+    }
+
+    if (seconds < 10) {
+        seconds = "0" + seconds; // Add leading zero to seconds if less than 10
+    }
+
+    if (minutes < 10) {
+        minutes = "0" + minutes; // Add leading zero to minutes if less than 10
+    }
+
+    outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; // Display the time
 }
 
-if (time[1] == -1) {
-    time[0]--; // Decrement hours
-    time[1] = 59; // Reset minutes to 59
-}
-
-if (time[0] == -1) {
-    time[0] = 0; // Ensure hours do not go below 0
-    time[1] = 0; // Ensure minutes do not go below 0
-    time[2] = 0; // Ensure seconds do not go below 0
-}
-	    
-	    var [ hours, minutes, seconds ] = time;
-
-	    if( seconds == 0 && minutes == 0 && hours == 0 )
-	    {
-	        alert("Your Time Is Up..");
-	    	  window.location.href="examsummary.html";
-	    }
-	    
-	    
-	    if (seconds < 10) 
-	    {
-	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
-	    }
-	    else 
-	    {
-	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
-	    } 
-}
+// Example usage:
+var intervalId = setInterval(count, 1000); // Call count every second
 	  
 	  
 	  var outputElement = document.getElementById('demo');
