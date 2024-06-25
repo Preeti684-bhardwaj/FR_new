@@ -970,15 +970,15 @@ function snapfucn()
 }
 	  
 	  
-function count() {
-         if (time[1] > 0) {
-          time[1]--;
-          time[2] = 59;
-        } else if (time[0] > 0) {
-          time[0]--;
-          time[1] = 59;
-          time[2] = 59;
-        }
+function count()
+{
+	    time[2]--;
+	    if( time[2] == -1 )
+	    {   
+	      time[1]--;
+	      time[2] = 59;
+	      
+	    }
 	    const [ hours, minutes, seconds ] = time;
 
 	    if( seconds == 0 && minutes == 0 && hours == 0 )
