@@ -932,8 +932,12 @@ function snapfucn()
 </script>
 
 <script type="text/javascript">
-
   function initCountdown(times) {
+    var outputElement = document.getElementById('demo');
+    var toggleElement = document.getElementById('toggle');
+    var interval = null;
+    var time = [0, times, 0]; // Initialize seconds to 0
+
     function event_click(event) {
       if (interval === null) {
         start();
@@ -943,63 +947,51 @@ function snapfucn()
         event.target.className = 'zzz';
       }
     }
-  
+
     function start() {
       pause();
       interval = setInterval(count, 1000);
     }
-  
+
     function pause() {
       clearInterval(interval);
       interval = null;
     }
-  
+
     function count() {
       time[2]--;
-  
-      if (time[2] == -1) {
+      if (time[2] < 0) {
         time[1]--;
         time[2] = 59;
       }
-  
-      if (time[1] == -1) {
+      if (time[1] < 0) {
         time[0]--;
         time[1] = 59;
       }
-  
       var [hours, minutes, seconds] = time;
-  
+
       if (seconds < 10) {
-        outputElement.innerHTML = hours + ": " + minutes + ": 0" + seconds + " ";
+        outputElement.innerHTML = hours + ":" + minutes + ":" + "0" + seconds + " ";
       } else {
-        outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " ";
+        outputElement.innerHTML = hours + ":" + minutes + ":" + seconds + " ";
       }
-  
-      if (hours == 0 && minutes == 0 && seconds == 0) {
+
+      if (hours === 0 && minutes === 0 && seconds === 0) {
         alert("Your Time Is Up..");
         window.location.href = "examsummary.html";
+        pause(); // Stop the timer when time is up
       }
     }
-  
-    var outputElement = document.getElementById('demo');
-    var toggleElement = document.getElementById('toggle');
-    var interval = null;
-  
-    // Convert minutes to hours, minutes, seconds
-    var hours = Math.floor(times / 60);
-    var minutes = times % 60;
-    var seconds = 0;
-    
-    var time = [hours, minutes, seconds];
-  
+
     toggleElement.addEventListener('click', event_click);
-    toggleElement.click();
+    toggleElement.click(); // Start the timer immediately
   }
-  
-  initCountdown(120); // Example: Init countdown for 120 minutes (2 hours)
-  
-  </script>
-  
+
+  // Example usage
+  // Pass the time in seconds as an argument when calling initCountdown
+  initCountdown(3600); // 3600 seconds = 1 hour
+</script>
+
  
 <script type="text/javascript">
 
