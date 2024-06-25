@@ -932,98 +932,65 @@ function snapfucn()
 </script>
 
 <script type="text/javascript">
+  function initCountdown(totalMinutes) {
+    let time = [0, totalMinutes, 0]; // [hours, minutes, seconds]
+    let interval = null;
 
-	function initCountdown(times) 
-{
+    const outputElement = document.getElementById('demo');
+    const toggleButton = document.getElementById('toggle');
 
-	function event_click( event )
-{	   
-    
-	    if( interval === null )
-	    {
-	      
-	      start();
-	      event.target.className = 'rash';
-	     
-	    } else 
-	    
-	    {
-	      
-	      pause();
-	      event.target.className = 'zzz';
-	      
-	    }
-	    
-}
-	  
-	  function start()
-{
-	    pause();
-	    interval = setInterval( count, 1000 );
-	    
-}
-	  function pause() 
-{
-	  
-	    clearInterval( interval );
-	    interval = null;
-	    
-}
-  
-// var outputElement = document.getElementById("timerDisplay"); // Assuming there's an element with id 'timerDisplay'
-function count() {
-    time[2]--; // Decrement seconds
+    function start() {
+      pause();
+      interval = setInterval(count, 1000);
+    }
 
-    if (time[2] == -1) {
+    function pause() {
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function count() {
+      time[2]--; // Decrement seconds
+      if (time[2] === -1) {
         time[1]--; // Decrement minutes
-        time[2] = 59; // Reset seconds to 59
-    }
-
-    if (time[1] == -1) {
+        time[2] = 59;
+      }
+      if (time[1] === -1) {
         time[0]--; // Decrement hours
-        time[1] = 59; // Reset minutes to 59
-    }
+        time[1] = 59;
+      }
 
-    if (time[0] == -1) {
-        time[0] = 0; // Ensure hours do not go below 0
-        time[1] = 0; // Ensure minutes do not go below 0
-        time[2] = 0; // Ensure seconds do not go below 0
-    }
+      const [hours, minutes, seconds] = time;
 
-    var [hours, minutes, seconds] = time;
-
-    if (seconds == 0 && minutes == 0 && hours == 0) {
+      if (hours === 0 && minutes === 0 && seconds === 0) {
+        pause();
         alert("Your Time Is Up..");
         window.location.href = "examsummary.html";
+      }
+
+      // Update the display
+      outputElement.innerHTML = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
     }
 
-    if (seconds < 10) {
-        seconds = "0" + seconds; // Add leading zero to seconds if less than 10
+    function pad(number) {
+      return number < 10 ? '0' + number : number;
     }
 
-    if (minutes < 10) {
-        minutes = "0" + minutes; // Add leading zero to minutes if less than 10
+    function eventClick(event) {
+      if (interval === null) {
+        start();
+        event.target.className = 'rash';
+      } else {
+        pause();
+        event.target.className = 'zzz';
+      }
     }
 
-    outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; // Display the time
-}
+    toggleButton.addEventListener('click', eventClick);
+  }
 
-// Example usage:
-// var intervalId = setInterval(count, 1000); // Call count every second
-	  
-	  
-	  var outputElement = document.getElementById('demo');
-	  var toggleElement = document.getElementById('toggle');
-	  var interval = null;
-	  	  	  
-	  var time = [0,times,1];
-	
-	  toggleElement.addEventListener( 'click', event_click );
-	  toggleElement.click();	  
-	
-}	
-initCountdown();
-	
+  // Initialize the countdown with the desired number of minutes
+  document.addEventListener('DOMContentLoaded', () => initCountdown(10));
 </script>
  
 <script type="text/javascript">
