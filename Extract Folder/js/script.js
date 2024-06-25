@@ -28,7 +28,7 @@ $.ajax({
            
 			  var times = data.elapsed_time;
 			  
-			  //console.log(times);
+			  console.log(times);
       		      		
 			localStorage.setItem("elapsed_time",times);
 			if (!executed)

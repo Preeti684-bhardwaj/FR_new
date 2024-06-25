@@ -985,6 +985,8 @@ function snapfucn()
 	      time[2] = 59;
 	      
 	    }
+	 
+	    
 	    var [ hours, minutes, seconds ] = time;
 
 	    if( seconds == 0 && minutes == 0 && hours == 0 )
@@ -1009,15 +1011,17 @@ function snapfucn()
 	  var toggleElement = document.getElementById('toggle');
 	  var interval = null;
 	  	  	  
+    
 	  var time = [0,times,1];
 	
 	  toggleElement.addEventListener( 'click', event_click );
 	  toggleElement.click();	  
 	
 }	
-initCountdown();
+	initCountdown();
 	
 </script>
+ 
  
 <script type="text/javascript">
 
