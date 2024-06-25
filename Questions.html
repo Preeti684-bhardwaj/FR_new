@@ -971,24 +971,15 @@ function snapfucn()
 	  
 	  
 function count() {
-        if (time[2] > 0) {
-          time[2]--;
-        } else if (time[1] > 0) {
+  time[2]--;
+         if (time[1] > 0) {
           time[1]--;
           time[2] = 59;
         } else if (time[0] > 0) {
           time[0]--;
           time[1] = 59;
           time[2] = 59;
-        } else {
-          // Time's up
-          pause();
-          alert("Your Time Is Up..");
-          window.location.href = "examsummary.html";
-          return;
         }
-	 
-	    
 	    const [ hours, minutes, seconds ] = time;
 
 	    if( seconds == 0 && minutes == 0 && hours == 0 )
