@@ -930,83 +930,96 @@ function snapfucn()
 }
 
 </script>
+
 <script type="text/javascript">
 
-  function initCountdown() {
-      // Set the initial time in minutes (adjust as needed)
-      var totalTimeInMinutes = 30;
-      
-      // Initialize the time array [hours, minutes, seconds]
-      var time = [Math.floor(totalTimeInMinutes / 60), totalTimeInMinutes % 60, 0];
-      
-      var outputElement = document.getElementById('demo');
-      var toggleElement = document.getElementById('toggle');
-      var interval = null;
-      
-      // Function to start or resume the countdown
-      function start() {
-          pause(); // Ensure only one interval is running at a time
-          interval = setInterval(count, 1000);
-      }
-      
-      // Function to pause the countdown
-      function pause() {
-          clearInterval(interval);
-          interval = null;
-      }
-      
-      // Function to handle the countdown logic
-      function count() {
-          if (time[2] > 0) {
-              time[2]--;
-          } else {
-              if (time[1] > 0) {
-                  time[1]--;
-                  time[2] = 59;
-              } else {
-                  if (time[0] > 0) {
-                      time[0]--;
-                      time[1] = 59;
-                      time[2] = 59;
-                  } else {
-                      // Countdown timer has reached zero
-                      alert("Your Time Is Up.");
-                      window.location.href = "examsummary.html";
-                      pause(); // Stop the interval after countdown reaches zero
-                      return;
-                  }
-              }
-          }
-          
-          // Display the updated time in the outputElement
-          var hours = time[0];
-          var minutes = time[1];
-          var seconds = time[2];
-          
-          var formattedTime = hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
-          outputElement.textContent = formattedTime;
-      }
-      
-      // Event handler for the toggle button
-      function toggleCountdown(event) {
-          if (interval === null) {
-              start();
-              event.target.textContent = 'Pause'; // Update button text to indicate pause
-          } else {
-              pause();
-              event.target.textContent = 'Resume'; // Update button text to indicate resume
-          }
-      }
-      
-      // Initialize the countdown on page load
-      outputElement.textContent = time[0] + ":" + (time[1] < 10 ? "0" + time[1] : time[1]) + ":" + (time[2] < 10 ? "0" + time[2] : time[2]);
-      toggleElement.addEventListener('click', toggleCountdown);
-  }
-  
-  // Call the initCountdown function to start the countdown timer
-  initCountdown();
-  
-  </script>
+	function initCountdown(times) 
+{
+
+	function event_click( event )
+{	   
+    
+	    if( interval === null )
+	    {
+	      
+	      start();
+	      event.target.className = 'rash';
+	     
+	    } else 
+	    
+	    {
+	      
+	      pause();
+	      event.target.className = 'zzz';
+	      
+	    }
+	    
+}
+	  
+	  function start()
+{
+	    pause();
+	    interval = setInterval( count, 1000 );
+	    
+}
+	  function pause() 
+{
+	  
+	    clearInterval( interval );
+	    interval = null;
+	    
+}
+	  
+	  
+	  function count()
+{
+	    
+	    
+	    
+	    time[2]--;
+	    
+	    if( time[2] == -1 )
+	    {
+	    
+	      time[1]--;
+	      time[2] = 59;
+	      
+	    }
+	 
+	    
+	    var [ hours, minutes, seconds ] = time;
+
+	    if( seconds == 0 && minutes == 0 && hours == 0 )
+	    {
+	        alert("Your Time Is Up..");
+	    	  window.location.href="examsummary.html";
+	    }
+	    
+	    
+	    if (seconds < 10) 
+	    {
+	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
+	    }
+	    else 
+	    {
+	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
+	    } 
+}
+	  
+	  
+	  var outputElement = document.getElementById('demo');
+	  var toggleElement = document.getElementById('toggle');
+	  var interval = null;
+	  	  	  
+	  var time = [0,times,1];
+	
+	  toggleElement.addEventListener( 'click', event_click );
+	  toggleElement.click();	  
+	
+}	
+initCountdown();
+	
+</script>
  
 <script type="text/javascript">
 
