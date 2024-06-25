@@ -932,66 +932,92 @@ function snapfucn()
 </script>
 
 <script type="text/javascript">
-  function initCountdown(times) {
-    var outputElement = document.getElementById('demo');
-    var toggleElement = document.getElementById('toggle');
-    var interval = null;
-    var time = [0, times, 0]; // Initialize seconds to 0
 
-    function event_click(event) {
-      if (interval === null) {
-        start();
-        event.target.className = 'rash';
-      } else {
-        pause();
-        event.target.className = 'zzz';
-      }
-    }
+	function initCountdown(times) 
+{
 
-    function start() {
-      pause();
-      interval = setInterval(count, 1000);
-    }
+	function event_click( event )
+{	   
+    
+	    if( interval === null )
+	    {
+	      
+	      start();
+	      event.target.className = 'rash';
+	     
+	    } else 
+	    
+	    {
+	      
+	      pause();
+	      event.target.className = 'zzz';
+	      
+	    }
+	    
+}
+	  
+	  function start()
+{
+	    pause();
+	    interval = setInterval( count, 1000 );
+	    
+}
+	  function pause() 
+{
+	  
+	    clearInterval( interval );
+	    interval = null;
+	    
+}
+	  
+	  
+	  function count()
+{
+	    
+	    
+	    
+	    time[2]--;
+	    
+	    if( time[2] == -1 )
+	    {
+	    
+	      time[1]--;
+	      time[2] = 59;
+	      
+	    }
+	    var [ hours, minutes, seconds ] = time;
 
-    function pause() {
-      clearInterval(interval);
-      interval = null;
-    }
-
-    function count() {
-      time[2]--;
-      if (time[2] < 0) {
-        time[1]--;
-        time[2] = 59;
-      }
-      if (time[1] < 0) {
-        time[0]--;
-        time[1] = 59;
-      }
-      var [hours, minutes, seconds] = time;
-
-      if (seconds < 10) {
-        outputElement.innerHTML = hours + ":" + minutes + ":" + "0" + seconds + " ";
-      } else {
-        outputElement.innerHTML = hours + ":" + minutes + ":" + seconds + " ";
-      }
-
-      if (hours === 0 && minutes === 0 && seconds === 0) {
-        alert("Your Time Is Up..");
-        window.location.href = "examsummary.html";
-        pause(); // Stop the timer when time is up
-      }
-    }
-
-    toggleElement.addEventListener('click', event_click);
-    toggleElement.click(); // Start the timer immediately
-  }
-
-  // Example usage
-  // Pass the time in seconds as an argument when calling initCountdown
-  initCountdown(3600); // 3600 seconds = 1 hour
+	    if( seconds == 0 && minutes == 0 && hours == 0 )
+	    {
+	        alert("Your Time Is Up..");
+	    	  window.location.href="examsummary.html";
+	    }
+	    
+	    
+	    if (seconds < 10) 
+	    {
+	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
+	    }
+	    else 
+	    {
+	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
+	    } 
+}
+	  
+	  
+	  var outputElement = document.getElementById('demo');
+	  var toggleElement = document.getElementById('toggle');
+	  var interval = null;
+	  	  	  
+	  var time = [0,times,1];
+	
+	  toggleElement.addEventListener( 'click', event_click );
+	  toggleElement.click();	  
+	
+}	
+initCountdown();
+	
 </script>
-
  
 <script type="text/javascript">
 
