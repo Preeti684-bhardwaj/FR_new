@@ -24,7 +24,7 @@ $.ajax({
             var obj = data.question;
             var question_id = obj.id;
            alert("line 26", data);
-			  var times = data.elapsed_time;
+		   var times = parseInt(data.elapsed_time, 10);
 			  
 			  alert(times);
       		      		
