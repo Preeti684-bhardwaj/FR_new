@@ -937,7 +937,7 @@ function initCountdown(totalSeconds) {
     const toggleElement = document.getElementById('toggle');
     let interval = null;
     
-    let time = [0,(totalSeconds),1];
+    let time = [0,totalSeconds,1];
 
     function event_click(event) {
         if (interval === null) {
