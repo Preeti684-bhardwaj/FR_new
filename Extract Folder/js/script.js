@@ -23,10 +23,10 @@ $.ajax({
         	
             var obj = data.question;
             var question_id = obj.id;
-           console.log("line 26", data);
+           alert("line 26", data);
 			  var times = data.elapsed_time;
 			  
-			  console.log(times);
+			  alert(times);
       		      		
 			localStorage.setItem("elapsed_time",times);
 			if (!executed)
@@ -151,7 +151,7 @@ function submitanswer(){
 	var assessment_id = localStorage.getItem("assessment_id");  
 
 	var elapsed_time = localStorage.getItem("elapsed_time");
-	console.log("line 154",elapsed_time);
+	alert("line 154",elapsed_time);
 			
 	var value;
 
@@ -610,7 +610,7 @@ else if(choice_length == "3")
 	//alert(tim[2]+""+tim[3]);
 	
 	var elapsed_time = localStorage.getItem("elapsed_time");
-	console.log("line 613",elapsed_time);
+	alert("line 613",elapsed_time);
 
 	
 	

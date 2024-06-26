@@ -341,21 +341,20 @@ option {
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() 
-  {
-           get_next_qn();
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      get_next_qn();
       
-    if(location.search.indexOf('r') < 0)
-     {
-        var hash = window.location.hash;
-         var loc = window.location.href.replace(hash, '');
-
-         loc =loc+ (loc.indexOf('?') < 0? '?' : '&') + 'r';
-         setTimeout(function(){window.location.href = loc + hash;}, 100);
-      } 
+      if(!window.location.search.includes('r')) {
+        const url = new URL(window.location);
+        url.searchParams.append('r', '');
+        window.history.replaceState({}, '', url);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
   });
-  
-  </script>
+</script>
 <script>
   function quit() {
     if (confirm("Are you sure you want to quit?")) {
