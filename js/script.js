@@ -2,8 +2,7 @@
 var executed = false;
 
 function get_next_qn()
-{
-
+{ 
 	$("#overlay").fadeIn(300);
 
 	var lakshya_id=localStorage.getItem("lakshya_id");
