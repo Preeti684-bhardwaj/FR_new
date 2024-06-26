@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,66 +11,80 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="css/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/mobile.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.2.0/sweetalert2.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-  
+
+
 <style type="text/css">
 #abc
  {
- 
-background-image:url('img/toyota_logo.png') ;
-  background-repeat:no-repeat;
-  height: 57px;  
- 
- 
+    background-image:url('img/toyota_logo.png') ;
+    background-repeat:no-repeat;
+    
  } 
+
 .navbar-nav.navbar-center {
     position: absolute;
     left: 50%;
     transform: translatex(-50%);
 }
 
+/* The Close Button */
+.close {
+  color: red;
+  float: right;
+  font-size: 30px;
+  font-weight: 900;
+  opacity: 1;
+}
 
- #xyz1,#xyz{
+.close:hover,
+.close:focus {
+  color: #ff3333;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+}
+
+ #xyz1,#xyz {
  
-  background-color: #e6e6e6;
-  margin-left:10px;
-  box-shadow: 0px 1px 10px black;
-  overflow: scroll;
-  
-  
-      }
+        background-color: #e6e6e6;
+        margin-left:10px;
+        box-shadow: 0px 1px 10px black;
+        overflow: scroll;
+        font-family:'Noto Sans', sans-serif;
+        font-style: normal;
+        line-height:18px;
+        letter-spacing: 1.12px;
+        font-weight: 400;
+  }
+
   .QLable
-{
-   
-    height:100%;
+{   height:100%;
     width:50px !important;
     font-size: 20px;
-    color: #75272B;
-    
+    color: #75272B; 
 }
 
 #divSectionQuestions
 {
-   	  width: 100%;
- 
-   
+   	  width: 100%;  
 }
 
 .container-fluid {
     overflow: hidden;
 }
+
 #xyz, #xyz1
  {
     display: table-cell;
     -webkit-box-shadow:0px 1px 1px white;
- 	-moz-box-shadow:0px 1px 1px white;
- 	box-shadow:0px 1px 1px white;
-    height:650px;
+    -moz-box-shadow:0px 1px 1px white;
+    box-shadow:0px 1px 1px white;
+        height:720px;
 }
 
  canvas {
@@ -80,7 +93,6 @@ background-image:url('img/toyota_logo.png') ;
 }
 
 input[type='radio'] {
-        -webkit-appearance: none;
         width: 20px;
         height: 20px;
         border-radius: 50%;
@@ -95,11 +107,10 @@ input[type='radio'] {
         border-radius: 50%;
     }
 
- input[type="radio"]:checked:before 
- {
-        background: red;
-        
-    }
+    input[type="radio"]:checked:before 
+      {  
+          background: red; 
+      }
     
     input[type="radio"]:checked 
     {
@@ -129,12 +140,14 @@ option {
   display: none;
   background: rgba(0,0,0,0.01);
 }
+
 .cv-spinner {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .spinner {
   width: 40px;
   height: 40px;
@@ -143,49 +156,50 @@ option {
   border-radius: 50%;
   animation: sp-anime 0.8s infinite linear;
 }
+
 @keyframes sp-anime {
   100% {
     transform: rotate(360deg);
   }
 }
+
 .is-hide{
   display:none;
 }
+@media (min-width: 326px) and (max-width: 767px) {
+    .brand-logo {
+      text-align:center;
+    }
 
+    .brand-logo li {
+      display: block;
+      margin-left:140px;
+      
+    }
+  }
 </style>
-  
-  
 </head>
 
-<body onkeydown="AltDown();" onload="initCountdown">
+<body onkeydown="AltDown();" onload="initCountdown()">
 
 <!-- HEADER STARTS -->
 
 <nav class="navbar navbar-default" id="abc" style="background-color: #ED1B26;">
-    <div class="container-fluid" style="">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-     <a class="navbar-brand">
-      </a>
-       </div>     
+    <div class="container-fluid">
+    
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
-          <li ><a href="#"></a></li>
+          <!-- <li class="pull-left"><a href="#"><img src="img/toyota_logo.png" style="margin-top:-15px;margin-left:-50px;width:207px;height:64px"></a></li> -->
           <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-center">
-            <li><a href="#" style="color:white;font-family: 'Source Sans Pro', sans-serif;font-size: 25px;">Assessment</a></li>
+          <div class="brand-logo" style="margin-top: 11px;"><li><a href="#" style="color:white;font-family: 'Source Sans Pro', sans-serif;text-align: center;font-size: 18px; margin-top: 21px;">Assessment</a></li></div>
            
         </ul>
  <ul class="navbar-nav navbar-right">
  
-<li id="toggle" style="list-style-type: none;"><a href="#" onclick="check()" style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;"><img src="img1/pause.png" style="margin-top: 14px;padding-left: 11px;"><p style="padding-right: 15px">Pause</p></a></li>
-<li style="list-style-type: none;"><a href="#" onclick = "quit()"style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;"><img src="img1/quit.png" style="margin-top: 14px;margin-left: 15px;text-decoration: none;"><p style="padding-left: 10px;"><span>Quit</span></p></a></li>
+<li id="toggle"  style="list-style-type: none;"><a  onclick="check()"   style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/pause.png" style="margin-top: 14px;padding-left: 11px;"><p style="padding-right: 15px"><span>Pause</span></p></a></li>
+<li style="list-style-type: none;"><a onclick="quit()" style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/quit.png" style="margin-top: 14px;margin-left: 15px;text-decoration: none;"><p style="padding-left: 10px;"><span>Quit</span></p></a></li>
 
 
 </ul>
@@ -227,7 +241,7 @@ option {
 
 <div class="col-md-3">
 <div id="container" style="margin-right: 30%">
-<canvas class="center-block" id="canvasOutput" style="height: 50%;width: 50%"></canvas>
+<canvas class="center-block" id="canvasOutput" style="height:50%;width:50%"></canvas>
  </div>
   <div >
     <input type="checkbox" id="face" name="classifier" value="face" checked style="display: none;">
@@ -237,7 +251,7 @@ option {
     <br>
   </div>
  <div class="invisible">
- <video id="video" class="hidden" style="height: 100px"></video>
+ <video id="video" class="hidden"  width="420" height="340" autoplay ></video>
 </div>
 </div>
 
@@ -266,7 +280,7 @@ option {
 <!-- <img src="img1/question1.png" style="width: 30px;height: 30px;">
  -->
 </span>
-<a href="#"><button type="button" class="btn btn-success"  onclick = "submitanswer()" style="font-family: calibri regular;float:right;margin-bottom: 10px;margin-right: 15px;">Submit & Next >></button></a>
+<a href="#"><button type="button" class="btn btn-success"  onclick="submitanswer()" style="font-family: calibri regular;float:right;margin-bottom: 10px;margin-right: 15px;"> Submit & Next >> </button></a>
 </div>
 
 <div class="col-sm-2" id="xyz1">
@@ -302,7 +316,7 @@ option {
 <div class="container" >
 <div class="row">
 <div class="col-sm-6">
- 	<video hidden id="video" width="540" height="480" autoplay="true"></video>
+ 	<video hidden id="video" width="420" height="340" autoplay></video>
 	<img src="" id="con" hidden></div>
 	<div class="col-sm-6">
 	<h3 style="margin-top: 50px;font-family: calibri regular"><b style="display: none;">The Image will be captured in <span id="countdowntimer">10</span> Seconds</b></h3>
@@ -310,12 +324,12 @@ option {
 </div>
 </div>
 	
-	<canvas  hidden id="canvas" width="540" height="480"> </canvas>
+	<canvas  hidden id="canvas" width="420" height="340"> </canvas>
 	
 	<div id="abcd" style="display: none;text-align: center;border-bottom: 1px solid black;margin-top: 50px;">
 
 <h1 style="color: red;font-family: calibri regular;">Your Profile Photo Did not Match</h1>
-<a href="testlogin.html"><button class="btn btn-danger" id="id" style="font-family: calibri regular"  >Exit</button></a>
+<a href="https://toyota-lakshya.com/default.aspx"><button class="btn btn-danger" id="id" style="font-family: calibri regular"  >Exit</button></a>
 
 </div>
 
@@ -326,56 +340,53 @@ option {
 	</div>
 </div>
 
-
-<!-- face recognition background -->
-
-
-
 <script type="text/javascript">
-
-
-$(document).ready(function() 
-{
-	
-	
-
-	
-	get_next_qn();
-	
-
-	
-	if(location.search.indexOf('r') < 0)
- 	{
-	    var hash = window.location.hash;
- 	    var loc = window.location.href.replace(hash, '');
- 	    loc += (loc.indexOf('?') < 0? '?' : '&') + 'r';
- 	    setTimeout(function(){window.location.href = loc + hash;}, 100);
- 	} 
-	
-	
-	
-	
-});
-
-
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      get_next_qn();
+      
+      if(!window.location.search.includes('r')) {
+        const url = new URL(window.location);
+        url.searchParams.append('r', '');
+        window.history.replaceState({}, '', url);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  });
+</script>
+<script>
+  function quit() {
+    if (confirm("Are you sure you want to quit?")) {
+      window.location.replace("examsummary.html");
+    } else {
+      window.location.href("#");
+    }
+  }
 </script>
 
+<script type="text/javascript">
+  function check()
+      {
+        window.location.replace("timer1.html");
+      }
+  </script>
 
 
-   
+
+<!-- face recognition background -->
 
 <script type="text/javascript">
  function updateOnlineStatus() 
  {
-
 	 window.location.reload();
-
  }
+
  function updateOfflineStatus() 
  {
  	alert("No Internet Connection....");
-
  }
+
  window.addEventListener('online', updateOnlineStatus);
  window.addEventListener('offline', updateOfflineStatus); 
 
@@ -403,15 +414,15 @@ $(document).ready(function()
 var ftvalue1 = 0;
 var multifacevalue = 0;
 var ftvalue2 = 0;
-
-
-
 let videoWidth, videoHeight;
 
 //whether streaming video from the camera.
 let streaming = false;
 
 let video = document.getElementById('video');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('playsinline', '');
+
 let canvasOutput = document.getElementById('canvasOutput');
 let canvasOutputCtx = canvasOutput.getContext('2d');
 const img = document.querySelector('#screenshot img');
@@ -422,16 +433,18 @@ let detectFace = document.getElementById('face');
 let detectEye = document.getElementById('eye');
 
 function startCamera() {
+
 if (streaming) return;
-navigator.mediaDevices.getUserMedia({video: true, audio: false})
+
+navigator.mediaDevices.getUserMedia({ video: true, video: { facingMode: 'user'} })
  .then(function(s) {
  stream = s;
  video.srcObject = s;
  video.play();
 })
- .catch(function(err) {
+.catch(function(err) {
 	 alert("Please Enable Camera and continue your assessment !...")
-	 window.location.href = "index.html";
+	 window.location.href = "https://toyota-lakshya.com/default.aspx";
  //console.log("An error occured! " + err);
 });
 
@@ -447,19 +460,20 @@ video.addEventListener("canplay", function(ev){
  }
  startVideoProcessing();
 }, false);
+
 }
+
+// video.addEventListener('onloadedmetadata', startCamera);
+
 
 let faceClassifier = null;
 let eyeClassifier = null;
-
 let src = null;
 let dstC1 = null;
 let dstC3 = null;
 let dstC4 = null;
-
 let canvasInput = null;
 let canvasInputCtx = null;
-
 let canvasBuffer = null;
 let canvasBufferCtx = null;
 
@@ -468,15 +482,15 @@ function startVideoProcessing()
 	
 if (!streaming) 
 { 
-	console.log("Please startup your webcam"); 
+	  console.log("Please startup your webcam"); 
 		return; 
 }
+
 stopVideoProcessing();
 canvasInput = document.createElement('canvas');
 canvasInput.width = videoWidth;
 canvasInput.height = videoHeight;
 canvasInputCtx = canvasInput.getContext('2d');
-
 canvasBuffer = document.createElement('canvas');
 canvasBuffer.width = videoWidth;
 canvasBuffer.height = videoHeight;
@@ -495,31 +509,13 @@ requestAnimationFrame(processVideo);
 
 }
 
+// video.addEventListener('onprogress', startVideoProcessing); 
+
 
 function processVideo() 
 {
-	
-	 /* if(ftvalue1>=250)
-	{
-		var number_of_warnings1 = localStorage.getItem("number_of_warnings1");
-		if(number_of_warnings1<=5)
-		{
-			alert("warning: Please Be in the Video Frame, face validation is taking place..!!");
-			snapshot();
-		}
-		else
-		{
-			 window.location.href="malpractice.html";
-		}
-		number_of_warnings1++;
-		localStorage.setItem("number_of_warnings1", number_of_warnings1);
-	   
-	}
-	 */
-	 
-	  
 
-	 if(multifacevalue >= 150)
+	 if(multifacevalue >= 600)
 	{
 		
 		var number_of_warnings1 = localStorage.getItem("number_of_warnings1");
@@ -536,8 +532,6 @@ function processVideo()
 		localStorage.setItem("number_of_warnings1", number_of_warnings1);
 		
    }
-	
-    
 	
 stats.begin();
 canvasInputCtx.drawImage(video, 0, 0, videoWidth, videoHeight);
@@ -592,7 +586,7 @@ if (detectFace.checked) {
  }
 }
 
-if(ftvalue1>=20)
+if(ftvalue1>=35)
 {
 	   //alert(faces.length);
 	   if(faces.length > 0)
@@ -609,7 +603,7 @@ if(ftvalue1>=20)
 
 }
 
-if(ftvalue2 > 300)
+if(ftvalue2 > 600)
 {
 	
 	var number_of_warnings1 = localStorage.getItem("number_of_warnings1");
@@ -631,15 +625,11 @@ if(ftvalue2 > 300)
 
 
 function snapshot() 
-{
-	
-	
-	
+{	
 	canvasOutputCtx.fillRect(0,0,videoWidth,videoHeight);
 	canvasOutputCtx.drawImage(canvasInput, 0, 0, videoWidth, videoHeight);
-	var image = new Image();
-	image.src = canvasOutput.toDataURL('image/png',);
-	
+    var image = new Image();
+    image.src = canvasOutput.toDataURL('image/png',);
 
 	  /*  function getCookie(name) {
 	    var cookieValue = null;
@@ -690,10 +680,8 @@ function snapshot()
 	
  }
 
-
 canvasOutputCtx.drawImage(canvasInput, 0, 0, videoWidth, videoHeight);
 drawResults(canvasOutputCtx, faces, 'red', size);
-
 
 if(faces.length==0)
 {
@@ -707,31 +695,20 @@ else
 
 if(faces.length > 1)
 {
-
-	
 	multifacevalue++;
-	console.log(multifacevalue);
-	
-	
+	console.log(multifacevalue);	
 }
+
 else
 {
 	multifacevalue=0;
 }
 
-
-
-
 drawResults(canvasOutputCtx, eyes, 'yellow', size);
 stats.end();
 requestAnimationFrame(processVideo);
+
 }
-
-
-
-
-
-
 
 
 function drawResults(ctx, results, color, size) 
@@ -776,18 +753,17 @@ initUI();
 startCamera();
 }
 
-
-
 function face_recogn()
 {
 	//alert("hi");
 	var video = document.getElementById('video');
 
-	
 // Get access to the camera!
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+
+    navigator.mediaDevices.getUserMedia({ video: true, video: {
+    facingMode: 'user'} }).then(function(stream) {
         //video.src = window.URL.createObjectURL(stream);
         video.srcObject = stream;
         video.play();
@@ -799,14 +775,11 @@ var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 var video = document.getElementById('video');
 
-	context.drawImage(video, 0, 0, 540, 480);
-	
-	
-context.drawImage(video, 0, 0, 640, 480);
+	context.drawImage(video, 0, 0, 420, 340);
+  context.drawImage(video, 0, 0, 420, 340);
 			
-	
 	var my_image = convertCanvasToImage(canvas);
-    //document.body.appendChild(my_image);
+    //document.body.appendChild(my_image);]''
 
    function getCookie(name) {
     var cookieValue = null;
@@ -847,14 +820,12 @@ var csrftoken = getCookie('csrftoken');
         	  //window.location.href="Matching.html";
           } 
           
-          else 
-        	  
+          else   	  
           {
             alert('An error occurred!');
           }
     };  
-     
-
+    
 }
 
 function convertCanvasToImage(canvas) 
@@ -873,7 +844,7 @@ function cehckingface()
 	imageid=localStorage.getItem("imageid");
 	lakshya_id=localStorage.getItem("lakshya_id");
 	
-    assessment_id = localStorage.getItem("assessment_id");
+  assessment_id = localStorage.getItem("assessment_id");
     
     
 	var number_of_warnings1 = localStorage.getItem("number_of_warnings1");
@@ -903,9 +874,6 @@ function cehckingface()
 		}
 	
 	var attempts = localStorage.getItem('attempts');
-
-
-
 	
 	$.ajax({   
         
@@ -915,46 +883,33 @@ function cehckingface()
        	data: "json",
         success: function(data)
       {    
-        	
         	var obj = data.label;
-        	
-        	//alert("face checked");
-        	
-        	if(obj == lakshya_id)
+        	        	
+       if(obj == lakshya_id)
       {
-        		//alert("ID is Matching");
         		ftvalue1 = 0;
         		ftvalue2 = 0;
       }
        else
       {
     	  
-    	
-    	   alert("Warning : Face The Camera Properly Otherwise Your Exam Will Be closed Because Your Id is Not matching !..");
-    	   
-        		
-    	   snapfucn();
-   		
-           //window.location.href="malpractice.html";
+         alert("Warning : Face The Camera Properly Otherwise Your Exam Will Be closed Because Your Id is Not matching !..");
+    	  snapfucn();
+      //window.location.href="malpractice.html";
         		
       }
             
-      }
+    }
 
 });
-	
-	
+		
 }
-
 </script>
 
-
 <script>
-
-
 function snapfucn() 
 {
-	
+
 	var number_of_warnings1 = localStorage.getItem("number_of_warnings1");
 	if(number_of_warnings1 <= 5)
 	{
@@ -968,199 +923,76 @@ function snapfucn()
 	}
 	number_of_warnings1++;
 	localStorage.setItem("number_of_warnings1", number_of_warnings1);
-	
-	
+		
     //setTimeout(snapshot, 5000);
-
-  
   
 }
-
-
 
 </script>
 
-
-<!--  <script type="text/javascript">
-
-function  hmstoseconds(hms)
-{
-	
-	var a = hms.split(":"); // split it at the colons
-	var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
-	console.log(seconds);
-	return seconds;
-	
-
-	
-}
-
-
-function secondstohms(seconds)
-{
-	var date = new Date(null);
-	date.setSeconds(seconds); // specify value for SECONDS here
-	var timeString = date.toISOString().substr(11, 8);
-	console.log(timeString)
-	return timeString;
-	
-}
-
-
-</script> -->
-
- 
- 
 <script type="text/javascript">
 
-
-
-	function initCountdown(times) 
-{
-
-			
-	function event_click( event )
-{	   
-	    
-	    if( interval === null )
-	    {
-	      
-	      start();
-	      event.target.className = 'rash';
-	     
-	    } else 
-	    
-	    {
-	      
-	      pause();
-	      event.target.className = 'zzz';
-	      
-	    }
-	    
-}
-	  
-	  function start()
-{
-	    pause();
-	    interval = setInterval( count, 1000 );
-	    
-}
-	  function pause() 
-{
-	  
-	    clearInterval( interval );
-	    interval = null;
-	    
-}
-	  
-	  
-	  function count()
-{
-	    
-	    
-	    
-	    time[2]--;
-	    
-	    if( time[2] == -1 )
-	    {
-	    
-	      time[1]--;
-	      time[2] = 59;
-	      
-	    }
-	 
-	    
-	    var [ hours, minutes, seconds ] = time;
-
-	    if( seconds == 0 && minutes == 0 && hours == 0 )
-	    {
-	        alert("Your Time Is Up..");
-	    	window.location ="examsummary.html";
-	      
-	    }
-	    
-	    
-	    if (seconds < 10) 
-	    {
-	    
-	      outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";
-	      
-	    }
-	    else 
-	    {
-	    
-	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
-	    } 
-}
-	  
-	  
-	  var outputElement = document.getElementById('demo');
-	  var toggleElement = document.getElementById('toggle');
-	  var interval = null;
-	  	  	  
+function initCountdown(totalSeconds) {
+    const outputElement = document.getElementById('demo');
+    const toggleElement = document.getElementById('toggle');
+    let interval = null;
     
-	  var time = [0,times,1];
-	
-	 
-	 
-	
-	  toggleElement.addEventListener( 'click', event_click );
-	  toggleElement.click();	  
+    let time = [
+        Math.floor(totalSeconds / 3600),
+        Math.floor((totalSeconds % 3600) / 60),
+        totalSeconds % 60
+    ];
 
+    function event_click(event) {
+        if (interval === null) {
+            start();
+            event.target.className = 'rash';
+        } else {
+            pause();
+            event.target.className = 'zzz';
+        }
+    }
+  
+    function start() {
+        pause();
+        interval = setInterval(count, 1000);
+    }
 
-
-
-
-	
-}	
-	initCountdown();
-	
-
-
-	
-	
-	
-
+    function pause() {
+        clearInterval(interval);
+        interval = null;
+    }
+  
+    function count() {
+        if (--time[2] < 0) {
+            time[2] = 59;
+            if (--time[1] < 0) {
+                time[1] = 59;
+                if (--time[0] < 0) {
+                    pause();
+                    alert("Your Time Is Up..");
+                    window.location.href = "examsummary.html";
+                    return;
+                }
+            }
+        }
+    
+        const [hours, minutes, seconds] = time;
+        outputElement.innerHTML = `${hours}: ${minutes < 10 ? '0' : ''}${minutes}: ${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+  
+    toggleElement.addEventListener('click', event_click);
+    toggleElement.click();
+}
 	
 </script>
  
-
-<script>
-  function quit() {
-    // var txt;
-    if (confirm("Are Your Sure Want To Quit!")) {
-      // txt = "You pressed OK!";
-      window.location = "/examsummary.html"
-      // document.location.assign(document.location.origin + "/examsummary.html");
-    } else {
-      txt = "You pressed Cancel!";
-    }
-  }
-  </script>
-
-
-
 <script type="text/javascript">
 
 	history.pushState(null, null, location.href);	
 	window.onpopstate = function () {
     history.go(1);
     };
-
-</script>
-
-
-
-
-<script type="text/javascript">
-
-
-function check()
-{
-	
-	window.location ='timer1.html';
-	
-}
 
 </script>
 
@@ -1172,27 +1004,13 @@ window.onpopstate = function () {
     history.go(1);
 };
 
-
 </script>
-
-
-
-
 
 <script type="text/javascript" >
 
    function preventBack(){window.history.forward();}
     setTimeout("preventBack()", 0);
-    window.onunload=function(){null};
-    
-    
-    $(window).keydown(function(event) 
-    {
-    	if(event.keyCode == 91 || event.keyCode == 93)
-    	{
-    		         window.location.href="SwitchingWindow.html";
-    	}
-    });
+    window.onunload=function(){null}
     
 
 document.onkeydown = function()
@@ -1259,13 +1077,12 @@ var url=localStorage.getItem("access");
 
 if(url == 0)
 	{
-	
-	window.location.href="#";
+	       window.location.href="#";
 	}
 else 
 {
 	
- 	window.location.href="index.html";
+ 	window.location.href="https://toyota-lakshya.com/default.aspx";
  	
 }
 
