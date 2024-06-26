@@ -15,8 +15,6 @@ function get_next_qn()
 	
 	
 $.ajax({
-			
-        
         url:"https://toyota-lakshya-onlineassessment.in/api/get_next_question/?login_id="+lakshya_id+"&assessment_id="+assessment_id+"",
        	type:"GET",
        	data: "json",
@@ -25,7 +23,7 @@ $.ajax({
         	
             var obj = data.question;
             var question_id = obj.id;
-           
+           console.log("line 26", data);
 			  var times = data.elapsed_time;
 			  
 			  console.log(times);
@@ -153,7 +151,7 @@ function submitanswer(){
 	var assessment_id = localStorage.getItem("assessment_id");  
 
 	var elapsed_time = localStorage.getItem("elapsed_time");
-	
+	console.log("line 154",elapsed_time);
 			
 	var value;
 
@@ -612,6 +610,7 @@ else if(choice_length == "3")
 	//alert(tim[2]+""+tim[3]);
 	
 	var elapsed_time = localStorage.getItem("elapsed_time");
+	console.log("line 613",elapsed_time);
 
 	
 	
