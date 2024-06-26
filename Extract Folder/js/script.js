@@ -1,146 +1,83 @@
+let executed = false;
 
-var executed = false;
+function get_next_qn() {
+    $("#overlay").fadeIn(300);
+    
+    const lakshya_id = localStorage.getItem("lakshya_id");
+    const assessment_id = localStorage.getItem("assessment_id");
+    const page5 = "<label class=\"QLable\" id=\"Q1\">total_questions1</label>";
+    const page6 = "<label class=\"QLable\" id=\"Q2\" style=\"color:green\">total_questions2</label>";    
+    
+    $.ajax({
+        url: `https://toyota-lakshya-onlineassessment.in/api/get_next_question/?login_id=${lakshya_id}&assessment_id=${assessment_id}`,
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            const obj = data.question;
+            const question_id = obj.id;
+            console.log("Response data:", data);
 
-function get_next_qn()
-{
+            const totalSeconds = parseInt(data.elapsed_time, 10);
+            console.log("Elapsed time in seconds:", totalSeconds);
 
-	$("#overlay").fadeIn(300);
-	
-	var lakshya_id=localStorage.getItem("lakshya_id");
-	var assessment_id = localStorage.getItem("assessment_id");
-	var page5 = "<label class=\"QLable\" id=\"Q1\"\>total_questions1</label>";
-	var collectionss = "";
-	var page6 = "<label class=\"QLable\" id=\"Q2\"\ style=\"color:green\">total_questions2</label>";	
-	var collectionsss = "";	
-	
-	
-$.ajax({
-        url:"https://toyota-lakshya-onlineassessment.in/api/get_next_question/?login_id="+lakshya_id+"&assessment_id="+assessment_id+"",
-       	type:"GET",
-       	data: "json",
-        success: function(data)
-        { 
-        	
-            var obj = data.question;
-            var question_id = obj.id;
-           alert("line 26", data);
-		   var times = parseInt(data.elapsed_time, 10);
-			  
-			  alert(times);
-      		      		
-			localStorage.setItem("elapsed_time",times);
-			if (!executed)
-			{
-			initCountdown(times);
-			executed = true;
+            localStorage.setItem("elapsed_time", totalSeconds);
+            if (!executed) {
+                initCountdown(totalSeconds);
+                executed = true;
+            }
 
-		}
+            const answered_questions = data.answered_questions;
+            const total_questions = data.total_questions;
+            document.getElementById('inc').value = `${answered_questions + 1} of ${total_questions}`;
 
-	  		var answered_questions=data.answered_questions;
-           	
-           	var answered_questionss=data.answered_questions;
-          
-            var total_questions = data.total_questions;
-           
-            document.getElementById('inc').value = (answered_questions+1)+" of "+total_questions;
-            
-           
-            	for(var i=1 ; i <= total_questions;i++)
-        		{
-                 		var ele2 = "";
-				
-						ele2 = page5;
-						
-						
-					  answered_questions = answered_questions+1;
-					  
-					  if(answered_questions <= total_questions)
-  					{
-        				ele2 = ele2.replace("total_questions1", answered_questions);
-                 	    collectionss += ele2;
-        			}
-        			
-        	    }
-            		
-            		 $("#divSectionQuestions").html(collectionss); 
-            		 
-            		
-            		if(answered_questionss >= 1) 
-            	   {
-            			var ele3 = "";
-						ele3 = page6;
-						
-						
-						ele3 = ele3.replace("total_questions2", answered_questionss);
-                 	    collectionsss += ele3;	
-                 	    
-                 	    //localStorage.setItem("collectionsss",collectionsss);
-                 	    
-                 	}
-            	
+            let collectionss = "";
+            let collectionsss = "";
 
-            		
-            		 $("#attended").append(collectionsss);
-            		 
-            		 
-            		
-            		
-            		 
-        
-            localStorage.setItem("id1",question_id);
-			question_type = obj.question_type;
-			
-			data.question;
+            for (let i = 1; i <= total_questions; i++) {
+                let ele2 = page5.replace("total_questions1", i);
+                collectionss += ele2;
+            }
+            $("#divSectionQuestions").html(collectionss);
 
+            if (answered_questions >= 1) {
+                let ele3 = page6.replace("total_questions2", answered_questions);
+                collectionsss += ele3;
+            }
+            $("#attended").html(collectionsss);
 
-			if(question_type=='single_choice')
-       		{
-        		
-        		question1(data);
-       		}
-        	else if(question_type=='match_the_following') 
-       		{
-        		question2(data);
-       		}
-        	else if(question_type=='image_descriptive') 
-       		{
-        		question3(data);
-       		}
-        	else if(question_type=='multiple_choice') 
-       		{
-        		question4(data);
-       		}
-        	else if(question_type=='descriptive') 
-       		{
-        		question5(data);
-       		}
-        	else if(answered_questions >= total_questions) 
-       		{
-        		
-  				window.location.href="examsummary.html";
-			   }
-			   
-			   choice_length = obj.choice.length ;
+            localStorage.setItem("id1", question_id);
+            const question_type = obj.question_type;
 
-            
+            switch (question_type) {
+                case 'single_choice':
+                    question1(data);
+                    break;
+                case 'match_the_following':
+                    question2(data);
+                    break;
+                case 'image_descriptive':
+                    question3(data);
+                    break;
+                case 'multiple_choice':
+                    question4(data);
+                    break;
+                case 'descriptive':
+                    question5(data);
+                    break;
+                default:
+                    if (answered_questions >= total_questions) {
+                        window.location.href = "examsummary.html";
+                    }
+            }
+
+            const choice_length = obj.choice ? obj.choice.length : 0;
         }
-
-
-
-
-	
-	
-}).done(function()  {
-    setTimeout(function(){
+    }).done(function() {
+        setTimeout(function() {
             $("#overlay").fadeOut(300);
-
-
-	},300);
-	
-});
-
+        }, 300);
+    });
 }
-
 
 
 function submitanswer(){

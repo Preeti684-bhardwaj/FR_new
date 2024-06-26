@@ -932,91 +932,58 @@ function snapfucn()
 
 <script type="text/javascript">
 
-	function initCountdown(times) 
-{
-
-	function event_click( event )
-{	   
+function initCountdown(totalSeconds) {
+    const outputElement = document.getElementById('demo');
+    const toggleElement = document.getElementById('toggle');
+    let interval = null;
     
-	    if( interval === null )
-	    {
-	      
-	      start();
-	      event.target.className = 'rash';
-	     
-	    } else 
-	    
-	    {
-	      
-	      pause();
-	      event.target.className = 'zzz';
-	      
-	    }
-	    
-}
-	  
-	  function start()
-{
-	    pause();
-	    interval = setInterval( count, 1000 );
-	    
-}
-	  function pause() 
-{
-	  
-	    clearInterval( interval );
-	    interval = null;
-	    
-}
-	  
-	  
-	  function count()
-{
-	    
-	    
-	    
-	    time[2]--;
-	    
-	    if( time[2] == -1 )
-	    {
-	    
-	      time[1]--;
-	      time[2] = 59;
-	      
-	    }
-	 
-	    
-	    var [ hours, minutes, seconds ] = time;
+    let time = [
+        Math.floor(totalSeconds / 3600),
+        Math.floor((totalSeconds % 3600) / 60),
+        totalSeconds % 60
+    ];
 
-	    if( seconds == 0 && minutes == 0 && hours == 0 )
-	    {
-	        alert("Your Time Is Up..");
-	    	  window.location.href="examsummary.html";
-	    }
-	    
-	    
-	    if (seconds < 10) 
-	    {
-	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
-	    }
-	    else 
-	    {
-	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
-	    } 
+    function event_click(event) {
+        if (interval === null) {
+            start();
+            event.target.className = 'rash';
+        } else {
+            pause();
+            event.target.className = 'zzz';
+        }
+    }
+  
+    function start() {
+        pause();
+        interval = setInterval(count, 1000);
+    }
+
+    function pause() {
+        clearInterval(interval);
+        interval = null;
+    }
+  
+    function count() {
+        if (--time[2] < 0) {
+            time[2] = 59;
+            if (--time[1] < 0) {
+                time[1] = 59;
+                if (--time[0] < 0) {
+                    pause();
+                    alert("Your Time Is Up..");
+                    window.location.href = "examsummary.html";
+                    return;
+                }
+            }
+        }
+    
+        const [hours, minutes, seconds] = time;
+        outputElement.innerHTML = `${hours}: ${minutes < 10 ? '0' : ''}${minutes}: ${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+  
+    toggleElement.addEventListener('click', event_click);
+    toggleElement.click();
 }
-	  
-	  
-	  var outputElement = document.getElementById('demo');
-	  var toggleElement = document.getElementById('toggle');
-	  var interval = null;
-	  	  	  
-	  var time = [0,times,1];
-	
-	  toggleElement.addEventListener( 'click', event_click );
-	  toggleElement.click();	  
-	
-}	
-initCountdown();
 	
 </script>
  
