@@ -166,40 +166,30 @@ option {
 .is-hide{
   display:none;
 }
-@media (min-width: 326px) and (max-width: 767px) {
-    .brand-logo {
-      text-align:center;
-    }
 
-    .brand-logo li {
-      display: block;
-      margin-left:140px;
-      
-    }
-  }
 </style>
 </head>
 
-<body onkeydown="AltDown();" onload="initCountdown()">
+<body onkeydown="AltDown();" onload="initCountdown">
 
 <!-- HEADER STARTS -->
 
-<nav class="navbar navbar-default" id="abc" style="background-color: #ED1B26;">
+<nav class="navbar navbar-default" style="background-color: #ED1B26;">
     <div class="container-fluid">
     
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-left">
-          <!-- <li class="pull-left"><a href="#"><img src="img/toyota_logo.png" style="margin-top:-15px;margin-left:-50px;width:207px;height:64px"></a></li> -->
+          <li class="pull-left"><a href="#"><img src="img/toyota_logo.png" width="68px" height="20px"></a></li>
           <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-center">
-          <div class="brand-logo" style="margin-top: 11px;"><li><a href="#" style="color:white;font-family: 'Source Sans Pro', sans-serif;text-align: center;font-size: 18px; margin-top: 21px;">Assessment</a></li></div>
+            <li><a href="#" style="color:white;font-family: 'Source Sans Pro', sans-serif;font-size: 25px;">Assessment</a></li>
            
         </ul>
  <ul class="navbar-nav navbar-right">
  
-<li id="toggle"  style="list-style-type: none;"><a  onclick="check()"   style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/pause.png" style="margin-top: 14px;padding-left: 11px;"><p style="padding-right: 15px"><span>Pause</span></p></a></li>
-<li style="list-style-type: none;"><a onclick="quit()" style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/quit.png" style="margin-top: 14px;margin-left: 15px;text-decoration: none;"><p style="padding-left: 10px;"><span>Quit</span></p></a></li>
+<li id="toggle" style="list-style-type: none;"><a href="#" onclick="check()"   style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/pause.png" style="margin-top: 14px;padding-left: 11px;"><p style="padding-right: 15px">Pause</p></a></li>
+<li style="list-style-type: none;"><a href="#" onclick="quit()"    style="color: white;font-family: 'Source Sans Pro', sans-serif;text-decoration: none;cursor: pointer;"><img src="img1/quit.png" style="margin-top: 14px;margin-left: 15px;text-decoration: none;"><p style="padding-left: 10px;"><span>Quit</span></p></a></li>
 
 
 </ul>
@@ -329,7 +319,7 @@ option {
 	<div id="abcd" style="display: none;text-align: center;border-bottom: 1px solid black;margin-top: 50px;">
 
 <h1 style="color: red;font-family: calibri regular;">Your Profile Photo Did not Match</h1>
-<a href="https://toyota-lakshya.com/default.aspx"><button class="btn btn-danger" id="id" style="font-family: calibri regular"  >Exit</button></a>
+<a href="https://tkmserviceelearning.com/"><button class="btn btn-danger" id="id" style="font-family: calibri regular"  >Exit</button></a>
 
 </div>
 
@@ -341,37 +331,48 @@ option {
 </div>
 
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-      get_next_qn();
+  $(document).ready(function() 
+  {	
       
-      if(!window.location.search.includes('r')) {
-        const url = new URL(window.location);
-        url.searchParams.append('r', '');
-        window.history.replaceState({}, '', url);
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
+    get_next_qn(); 
+      
+      if(location.search.indexOf('r') < 0)
+    {
+        var hash = window.location.hash;
+        var loc = window.location.href.replace(hash, '');
+        loc += (loc.indexOf('?') < 0? '?' : '&') + 'r';
+        setTimeout(function(){window.location.href = loc + hash;}, 100);
     }
-  });
-</script>
-<script>
-  function quit() {
-    if (confirm("Are you sure you want to quit?")) {
-      window.location.replace("examsummary.html");
-    } else {
-      window.location.href("#");
-    }
-  }
-</script>
+    
 
-<script type="text/javascript">
-  function check()
-      {
-        window.location.replace("timer1.html");
-      }
+  });
+  
+ </script>
+
+<script type="text/javascript" >
+        function quit() {
+          var txt;
+          if (confirm("Are Your Sure Want To Quit!")) {
+
+            txt = "You pressed OK!";
+            window.location.replace("examsummary.html");
+
+          } 
+          else {
+            txt = "You pressed Cancel!";
+          }
+        
+        }
   </script>
 
+<script type="text/javascript">
+
+  function check()
+      {
+            window.location.replace("timer1.html");
+      }
+  
+  </script>
 
 
 <!-- face recognition background -->
@@ -444,7 +445,7 @@ navigator.mediaDevices.getUserMedia({ video: true, video: { facingMode: 'user'} 
 })
 .catch(function(err) {
 	 alert("Please Enable Camera and continue your assessment !...")
-	 window.location.href = "https://toyota-lakshya.com/default.aspx";
+	 window.location.href = "https://tkmserviceelearning.com/";
  //console.log("An error occured! " + err);
 });
 
@@ -930,59 +931,60 @@ function snapfucn()
 
 </script>
 
+
 <script type="text/javascript">
 
-function initCountdown(totalSeconds) {
-    const outputElement = document.getElementById('demo');
-    const toggleElement = document.getElementById('toggle');
-    let interval = null;
+  function initCountdown(totalSeconds) {
+      const outputElement = document.getElementById('demo');
+      const toggleElement = document.getElementById('toggle');
+      let interval = null;
+      
+      let time = [0,totalSeconds,1];
+  
+      function event_click(event) {
+          if (interval === null) {
+              start();
+              event.target.className = 'rash';
+          } else {
+              pause();
+              event.target.className = 'zzz';
+          }
+      }
     
-    let time = [0,totalSeconds,1];
-
-    function event_click(event) {
-        if (interval === null) {
-            start();
-            event.target.className = 'rash';
-        } else {
-            pause();
-            event.target.className = 'zzz';
-        }
-    }
+      function start() {
+          pause();
+          interval = setInterval(count, 1000);
+      }
   
-    function start() {
-        pause();
-        interval = setInterval(count, 1000);
-    }
-
-    function pause() {
-        clearInterval(interval);
-        interval = null;
-    }
-  
-    function count() {
-        if (--time[2] < 0) {
-            time[2] = 59;
-            if (--time[1] < 0) {
-                time[1] = 59;
-                if (--time[0] < 0) {
-                    pause();
-                    alert("Your Time Is Up..");
-                    window.location.href = "examsummary.html";
-                    return;
-                }
-            }
-        }
+      function pause() {
+          clearInterval(interval);
+          interval = null;
+      }
     
-        const [hours, minutes, seconds] = time;
-        outputElement.innerHTML = `${hours}: ${minutes < 10 ? '0' : ''}${minutes}: ${seconds < 10 ? '0' : ''}${seconds}`;
-    }
-  
-    toggleElement.addEventListener('click', event_click);
-    toggleElement.click();
-    initCountdown()
-}
-	
-</script>
+      function count() {
+          if (--time[2] < 0) {
+              time[2] = 59;
+              if (--time[1] < 0) {
+                  time[1] = 59;
+                  if (--time[0] < 0) {
+                      pause();
+                      alert("Your Time Is Up..");
+                      window.location.href = "examsummary.html";
+                      return;
+                  }
+              }
+          }
+      
+          const [hours, minutes, seconds] = time;
+          outputElement.innerHTML = `${hours}: ${minutes < 10 ? '0' : ''}${minutes}: ${seconds < 10 ? '0' : ''}${seconds}`;
+      }
+    
+      toggleElement.addEventListener('click', event_click);
+      toggleElement.click();
+      initCountdown()
+  }
+    
+  </script>
  
 <script type="text/javascript">
 
@@ -1079,7 +1081,7 @@ if(url == 0)
 else 
 {
 	
- 	window.location.href="https://toyota-lakshya.com/default.aspx";
+ 	window.location.href="https://tkmserviceelearning.com/";
  	
 }
 
