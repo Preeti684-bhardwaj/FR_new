@@ -959,20 +959,40 @@ function initCountdown(totalSeconds) {
         interval = null;
     }
   
-    function count() {
-        if (--time[2] < 0) {
-            time[2] = 59;
-            if (--time[1] < 0) {
-                time[1] = 59;
-                if (--time[0] < 0) {
-                    pause();
-                    alert("Your Time Is Up..");
-                    window.location.href = "examsummary.html";
-                    return;
-                }
-            }
-        }
-    
+    	  
+	  function count()
+{
+	    
+	    
+	    
+	    time[2]--;
+	    
+	    if( time[2] == -1 )
+	    {
+	    
+	      time[1]--;
+	      time[2] = 59;
+	      
+	    }
+	 
+	    
+	    var [ hours, minutes, seconds ] = time;
+
+	    if( seconds == 0 && minutes == 0 && hours == 0 )
+	    {
+	        alert("Your Time Is Up..");
+	    	  window.location.href="examsummary.html";
+	    }
+	    
+	    
+	    if (seconds < 10) 
+	    {
+	       outputElement.innerHTML = hours + ": " + minutes + ": " + "0" + seconds + " ";     
+	    }
+	    else 
+	    {
+	      outputElement.innerHTML = hours + ": " + minutes + ": " + seconds + " "; 
+	    }     
         const [hours, minutes, seconds] = time;
         outputElement.innerHTML = `${hours}: ${minutes < 10 ? '0' : ''}${minutes}: ${seconds < 10 ? '0' : ''}${seconds}`;
     }
